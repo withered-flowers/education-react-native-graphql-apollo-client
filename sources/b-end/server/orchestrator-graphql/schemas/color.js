@@ -18,7 +18,7 @@ const typeDefs = `#graphql
   type Query {  
     # Di sini kita mencoba untuk membuat sebuah Query dengan nama "getAllColors"
     # Kembaliannya berupa array of Color
-    getAllColors: [Color]
+    colors: [Color]
   }
 
   type Mutation {
@@ -32,7 +32,7 @@ const typeDefs = `#graphql
 // Define Resolver
 const resolvers = {
   Query: {
-    getAllColors: async () => {
+    colors: async () => {
       // Jangan lupa bila nanti ada cache, gunakan strategi cache (redis)
       // di sini yah
       const { data } = await axios.get(`${HOST}/colors`);

@@ -8,6 +8,7 @@ const {
   todoGetAll,
   todoPost,
   todoDelete,
+  todoGetById,
 } = require("./controllers/todoController");
 
 const app = express();
@@ -28,6 +29,7 @@ app
   })
   .post("/todos", todoPost)
   .get("/todos", todoGetAll)
+  .get("/todos/:id", todoGetById)
   .delete("/todos/:id", todoDelete)
   .use((err, _req, res, _next) => {
     console.log(err);

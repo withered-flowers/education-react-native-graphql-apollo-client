@@ -17,7 +17,8 @@ const typeDefs = `#graphql
   type Query {
     # Di sini kita mencoba untuk membuat sebuah Query dengan nama "getAllTodos"
     # Kembaliannya berupa array of Todo
-    getAllTodos: [Todo]
+    todos: [Todo],
+    todo(todoId: Int!): Todo
   }
 
   # type "Mutation" ini bersifat spesial:
@@ -33,9 +34,14 @@ const typeDefs = `#graphql
 
 const resolvers = {
   Query: {
-    getAllTodos: async () => {
+    todos: async () => {
       // Jangan lupa bila nanti harus ada cache, di cache di redis yah !
       const { data } = await axios.get(`${HOST}/todos`);
+      return data.data;
+    },
+    todo: async (_, { todoId }) => {
+      console.log(`${HOST}/todos/${todoId}`);
+      const { data } = await axios.get(`${HOST}/todos/${todoId}`);
       return data.data;
     },
   },

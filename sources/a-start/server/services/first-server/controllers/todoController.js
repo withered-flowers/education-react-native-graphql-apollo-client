@@ -16,6 +16,24 @@ const todoGetAll = async (_req, res, next) => {
   }
 };
 
+const todoGetById = async (req, res, next) => {
+  try {
+    // Assumption: This is a very heavy query which need a super long time duration
+    await new Promise((r) => setTimeout(r, 2000));
+
+    const { id } = req.params;
+
+    const todos = await Todo.findByPk(id);
+
+    res.status(200).json({
+      statusCode: 200,
+      data: todos,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 const todoPost = async (req, res, next) => {
   try {
     console.log(req.body, "req.body");
@@ -52,6 +70,7 @@ const todoDelete = async (req, res, next) => {
 
 module.exports = {
   todoGetAll,
+  todoGetById,
   todoPost,
   todoDelete,
 };

@@ -28,6 +28,9 @@ const TodosCard = ({ item }) => {
       <Text style={styles.containerCardContent}>
         {item.completed.toString()}
       </Text>
+      <TouchableOpacity style={styles.button} onPress={buttonOnPressHandler}>
+        <Text style={styles.buttonText}>Detail</Text>
+      </TouchableOpacity>
     </View>
   );
 };
