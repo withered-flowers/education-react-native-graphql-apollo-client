@@ -51,12 +51,15 @@ const TodosScreen = ({ navigation }) => {
           <Text style={styles.buttonText}>Add Todo</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.container}>
+      <View style={styles.containerFlatList}>
         <Text style={styles.textHeader}>List Todos</Text>
         <FlatList
           data={todosDataInitial}
+          horizontal={false}
           keyExtractor={(todo) => todo.id}
+          numColumns={2}
           renderItem={TodosCard}
+          style={styles.flatList}
         ></FlatList>
       </View>
     </>

@@ -11,14 +11,16 @@ const TodosAddScreen = ({ navigation }) => {
   const [newTodoName, setNewTodoName] = useState("");
   // TODO: use the hooks here
   // useMutation return tuple
-  const [dispatch, _] = useMutation(ADD_TODOS, {
+  const [dispatch, { loading }] = useMutation(ADD_TODOS, {
     refetchQueries: [GET_TODOS],
+    // wait for refetchQueries to complete
+    awaitRefetchQueries: true,
   });
 
-  const addTodoButtonOnPressHandler = () => {
+  const addTodoButtonOnPressHandler = async () => {
     console.log("Stack - TodosAdd - Add Todo Clicked");
 
-    dispatch({
+    await dispatch({
       variables: {
         name: newTodoName,
       },
@@ -40,10 +42,13 @@ const TodosAddScreen = ({ navigation }) => {
           value={newTodoName}
         />
         <TouchableOpacity
-          style={styles.button}
+          disabled={loading}
+          style={loading ? styles.buttonDisabled : styles.button}
           onPress={addTodoButtonOnPressHandler}
         >
-          <Text style={styles.buttonText}>Add Todo</Text>
+          <Text style={styles.buttonText}>
+            {loading ? "Loading ..." : "Add Todo"}
+          </Text>
         </TouchableOpacity>
       </View>
     </>

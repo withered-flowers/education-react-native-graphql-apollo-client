@@ -19,6 +19,13 @@ const styles = StyleSheet.create({
     padding: 4.0,
     textTransform: "capitalize",
   },
+  containerFlatList: {
+    padding: 16.0,
+    flex: 1,
+  },
+  flatList: {
+    flex: 1,
+  },
   textHeader: {
     fontSize: 24.0,
   },
@@ -38,6 +45,14 @@ const styles = StyleSheet.create({
     paddingVertical: 8.0,
     borderRadius: 16.0,
     width: 128.0,
+  },
+  buttonDisabled: {
+    backgroundColor: "#e91e63",
+    paddingHorizontal: 12.0,
+    paddingVertical: 8.0,
+    borderRadius: 16.0,
+    width: 128.0,
+    opacity: 0.5,
   },
   buttonText: {
     color: "white",
