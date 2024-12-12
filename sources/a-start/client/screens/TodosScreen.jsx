@@ -1,4 +1,6 @@
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
+
+import { useNavigation } from "@react-navigation/native";
 import styles from "../styles";
 
 const todosDataInitial = [
@@ -39,7 +41,10 @@ const TodosCard = ({ item }) => {
 	);
 };
 
-const TodosScreen = ({ navigation }) => {
+const TodosScreen = () => {
+	// use hooks "useNavigation" to navigate to another screen
+	const navigation = useNavigation();
+
 	const addTodosButtonOnPressHandler = () => {
 		console.log("Stack - TodosList - Add Todo Clicked");
 		navigation.navigate("TodosAdd");
@@ -61,7 +66,7 @@ const TodosScreen = ({ navigation }) => {
 					data={todosDataInitial}
 					horizontal={false}
 					keyExtractor={(todo) => todo.id}
-					numColumns={2}
+					numColumns={1}
 					renderItem={TodosCard}
 					style={styles.flatList}
 				/>

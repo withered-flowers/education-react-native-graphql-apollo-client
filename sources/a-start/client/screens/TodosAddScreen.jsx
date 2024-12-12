@@ -1,8 +1,10 @@
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "../styles";
 
-const TodosAddScreen = ({ navigation }) => {
+const TodosAddScreen = () => {
+	const navigation = useNavigation();
 	const [newTodoName, setNewTodoName] = useState("");
 
 	const addTodoButtonOnPressHandler = () => {

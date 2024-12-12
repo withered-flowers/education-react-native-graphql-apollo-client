@@ -5,6 +5,7 @@ import { useLazyQuery, useQuery } from "@apollo/client";
 // TODO: Import the GQL here
 import { GET_TODOS, GET_TODO_BY_ID } from "../queries";
 
+import { useNavigation } from "@react-navigation/native";
 import styles from "../styles";
 
 // TODO: Comment this, bye bye ~
@@ -50,7 +51,10 @@ const TodosCard = ({ item }) => {
 	);
 };
 
-const TodosScreen = ({ navigation }) => {
+const TodosScreen = () => {
+	// use hooks "useNavigation" to navigate to another screen
+	const navigation = useNavigation();
+
 	// TODO: Use the hooks here
 	// useQuery will return an Object with some props included:
 	// - data: the returned data from query
@@ -83,7 +87,7 @@ const TodosScreen = ({ navigation }) => {
 					data={data.todos}
 					horizontal={false}
 					keyExtractor={(todo) => todo.id}
-					numColumns={2}
+					numColumns={1}
 					renderItem={({ item }) => <TodosCard item={item} />}
 					style={styles.flatList}
 				/>

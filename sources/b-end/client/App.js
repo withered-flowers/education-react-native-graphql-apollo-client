@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // TODO: import the Provider and client needed here
 import { ApolloProvider } from "@apollo/client";
@@ -12,7 +12,7 @@ import ColorsScreen from "./screens/ColorsScreen";
 import TodosAddScreen from "./screens/TodosAddScreen";
 import TodosScreen from "./screens/TodosScreen";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const TodosStackNavigation = () => {

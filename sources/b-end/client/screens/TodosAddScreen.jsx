@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "../styles";
@@ -7,7 +8,9 @@ import { useMutation } from "@apollo/client";
 // TODO: import GQL needed
 import { ADD_TODOS, GET_TODOS } from "../queries";
 
-const TodosAddScreen = ({ navigation }) => {
+const TodosAddScreen = () => {
+	const navigation = useNavigation();
+
 	const [newTodoName, setNewTodoName] = useState("");
 	// TODO: use the hooks here
 	// useMutation return tuple
@@ -15,18 +18,25 @@ const TodosAddScreen = ({ navigation }) => {
 		refetchQueries: [GET_TODOS],
 		// wait for refetchQueries to complete
 		awaitRefetchQueries: true,
+		// navigate to TodosList after mutation completed
+		onCompleted: () => {
+			navigation.navigate("TodosList");
+		},
 	});
 
-	const addTodoButtonOnPressHandler = async () => {
+	const addTodoButtonOnPressHandler = () => {
 		console.log("Stack - TodosAdd - Add Todo Clicked");
 
-		await dispatch({
+		// ! Do not use await dispatch here
+		dispatch({
 			variables: {
 				name: newTodoName,
 			},
 		});
 
-		navigation.navigate("TodosList");
+		// ! Do not use navigate here
+		// ! It will not wait for the mutation to complete
+		// navigation.navigate("TodosList");
 	};
 
 	return (
